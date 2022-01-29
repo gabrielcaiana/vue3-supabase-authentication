@@ -1,7 +1,9 @@
 <template>
-  <router-view />
+  <h1>Login</h1>
 </template>
 
-<script setup></script>
+<script setup>
+"Login";
+</script>
 
 <style lang="scss" scoped></style>
