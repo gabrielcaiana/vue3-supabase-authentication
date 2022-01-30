@@ -41,9 +41,9 @@
           >Esqueceu sua senha?</router-link
         >
 
-        <!-- <div class="mt-5">
+        <div class="mt-5">
           <a @click.prevent="handleLogin('github')">Github</a>
-        </div> -->
+        </div>
       </form>
     </div>
   </div>

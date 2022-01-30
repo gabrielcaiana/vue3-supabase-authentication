@@ -46,7 +46,7 @@ const email = ref("");
 const handlePasswordReset = async () => {
   await sendPasswordRestEmail(email.value);
   router.push({ name: "login" });
-  console.log(`Password reset email sent to: ${email.value}`);
+  console.log(`Email de redefinição de senha enviado para: ${email.value}`);
 };
 </script>
 

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import useAuthUser from "../composables/UseAuthUser";
 
 const routes = [
   {
@@ -30,7 +31,18 @@ const routes = [
   {
     path: "/home",
     name: "home",
+    meta: {
+      requiresAuth: true,
+    },
     component: () => import("../pages/private/Home.vue"),
+  },
+  {
+    path: "/me",
+    name: "Me",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("../pages/private/Me.vue"),
   },
 ];
 
@@ -40,6 +52,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const { isLoggedIn } = useAuthUser();
+  if (!isLoggedIn() && to.meta.requiresAuth) {
+    next({ name: "login" });
+  }
+
   if (to.name === "EmailConfirmation" && !to.query.email)
     next({ name: "login" });
   else next();
