@@ -8,14 +8,24 @@ const routes = [
     },
   },
   {
+    path: "/register",
+    name: "register",
+    component: () => import("../pages/public/AppRegister.vue"),
+  },
+  {
+    path: "/email-confirmation",
+    name: "EmailConfirmation",
+    component: () => import("../pages/public/EmailConfirmation.vue"),
+  },
+  {
     path: "/",
     name: "login",
-    component: () => import("../views/Login.vue"),
+    component: () => import("../pages/public/AppLogin.vue"),
   },
   {
     path: "/home",
     name: "home",
-    component: () => import("../views/Home.vue"),
+    component: () => import("../pages/private/Home.vue"),
   },
 ];
 const router = createRouter({

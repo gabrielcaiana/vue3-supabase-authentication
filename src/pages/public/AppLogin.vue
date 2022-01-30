@@ -2,8 +2,6 @@
   <h1>Login</h1>
 </template>
 
-<script setup>
-"Login";
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>
