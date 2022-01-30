@@ -7,7 +7,7 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
   const { isLoggedIn } = useAuthUser();
 
   if (
