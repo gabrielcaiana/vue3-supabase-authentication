@@ -11,7 +11,8 @@
             class="app-register__form__input"
             type="text"
             name="username"
-            placeholder="username"
+            placeholder="nome"
+            required
           />
         </div>
         <div>
@@ -22,7 +23,8 @@
             class="app-register__form__input"
             type="text"
             name="email"
-            placeholder="@email"
+            placeholder="email"
+            required
           />
         </div>
         <div>
@@ -33,7 +35,8 @@
             class="app-register__form__input"
             type="text"
             name="password"
-            placeholder="password"
+            placeholder="senha"
+            required
           />
         </div>
         <button type="submit" class="app-register__form__button">

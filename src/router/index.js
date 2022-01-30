@@ -28,8 +28,16 @@ const routes = [
     component: () => import("../pages/private/Home.vue"),
   },
 ];
+
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name === "EmailConfirmation" && !to.query.email)
+    next({ name: "login" });
+  else next();
+});
+
 export default router;
