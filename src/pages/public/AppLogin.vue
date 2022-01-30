@@ -28,22 +28,23 @@
           />
         </div>
         <button type="submit" class="app-login__form__button">Entrar</button>
+        <router-link
+          to="/forgot-password"
+          class="app-login__form__forgot-password"
+          >Esqueceu sua senha?</router-link
+        >
+
+        <!-- <button class="app-login__form__button--github">
+          <a @click.prevent="handleGithubLogin('github')">Github</a>
+        </button> -->
+
+        <hr class="my-6" />
 
         <router-link to="/register">
           <button class="app-login__form__button--secondary">
             Criar conta
           </button>
         </router-link>
-
-        <router-link
-          class="app-login__form__social-github"
-          to="/forgot-password"
-          >Esqueceu sua senha?</router-link
-        >
-
-        <div class="mt-5">
-          <a @click.prevent="handleLogin('github')">Github</a>
-        </div>
       </form>
     </div>
   </div>
@@ -55,23 +56,30 @@ import useAuthUser from "../../composables/UseAuthUser";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const { login, loginWithSocialProvider } = useAuthUser();
+const { login } = useAuthUser(); // add loginWithSocialProvider to login socialMedia
 
 const form = ref({
   email: "",
   password: "",
 });
 
-const handleLogin = async (provider) => {
+const handleLogin = async () => {
   try {
-    provider
-      ? await loginWithSocialProvider(provider)
-      : await login(form.value);
+    await login(form.value);
     router.push({ name: "Me" });
   } catch (error) {
     alert(error.message);
   }
 };
+
+// const handleGithubLogin = async (provider) => {
+//   try {
+//     await loginWithSocialProvider(provider);
+//     router.push({ name: "Me" });
+//   } catch (error) {
+//     alert(error.message);
+//   }
+// };
 </script>
 
 <style lang="scss" scoped>
@@ -103,10 +111,14 @@ const handleLogin = async (provider) => {
         &--secondary {
           @apply w-full mb-4 bg-gray-100 rounded-lg px-4 py-2 text-lg text-gray-500 tracking-wide font-semibold font-sans;
         }
+
+        &--github {
+          @apply w-full mt-6 bg-gray-600 rounded-lg px-4 py-2 text-lg text-gray-100 tracking-wide font-semibold font-sans;
+        }
       }
 
-      &__social-github {
-        @apply text-gray-500;
+      &__forgot-password {
+        @apply text-gray-500 block;
       }
     }
   }

@@ -18,20 +18,39 @@ export default function useAuthUser() {
     return user;
   };
 
-  const logout = async () => {};
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+  };
 
-  const isLoggedIn = () => {};
+  const isLoggedIn = () => {
+    return !!user.value;
+  };
 
   const register = async ({ email, password, ...meta }) => {
-    console.log(email, password, meta);
+    const { user, error } = await supabase.auth.signUp(
+      { email, password },
+      {
+        data: meta,
+        redirectTo: `${window.location.origin}/me?fromEmail=registrationConfirmation"`,
+      }
+    );
+    if (error) throw error;
+    return user;
   };
 
   const update = async (data) => {
-    console.log(data);
+    const { user, error } = await supabase.auth.update(data);
+    if (error) throw error;
+    return user;
   };
 
   const sendPasswordRestEmail = async (email) => {
-    console.log(email);
+    const { user, error } = await supabase.auth.api.resetPasswordForEmail(
+      email
+    );
+    if (error) throw error;
+    return user;
   };
 
   return {
