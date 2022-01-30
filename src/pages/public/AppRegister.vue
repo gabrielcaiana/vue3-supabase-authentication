@@ -43,7 +43,9 @@
           Registrar
         </button>
         <router-link to="/">
-          <button class="app-register__form__button--secondary">Login</button>
+          <button class="app-register__form__button--secondary">
+            Voltar para o login
+          </button>
         </router-link>
       </form>
     </div>
@@ -105,7 +107,7 @@ const handleSubmit = async () => {
         @apply w-full mt-6 bg-green-700 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans;
 
         &--secondary {
-          @apply w-full mt-6 mb-3 bg-gray-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans;
+          @apply w-full mt-6 mb-3 bg-gray-100 rounded-lg px-4 py-2 text-lg text-gray-500 tracking-wide font-semibold font-sans;
         }
       }
     }

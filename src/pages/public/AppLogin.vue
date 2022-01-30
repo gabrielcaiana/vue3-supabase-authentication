@@ -29,7 +29,15 @@
         </div>
         <button type="submit" class="app-login__form__button">Entrar</button>
 
-        <router-link class="app-login__form__social-github" to="/forgotPassword"
+        <router-link to="/register">
+          <button class="app-login__form__button--secondary">
+            Criar conta
+          </button>
+        </router-link>
+
+        <router-link
+          class="app-login__form__social-github"
+          to="/forgot-password"
           >Esqueceu sua senha?</router-link
         >
 
@@ -61,7 +69,7 @@ const handleLogin = async (provider) => {
       : await login(form.value);
     router.push({ name: "Me" });
   } catch (error) {
-    console.error(error);
+    alert(error.message);
   }
 };
 </script>
@@ -91,6 +99,10 @@ const handleLogin = async (provider) => {
 
       &__button {
         @apply w-full mt-6 mb-4 bg-green-700 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans;
+
+        &--secondary {
+          @apply w-full mb-4 bg-gray-100 rounded-lg px-4 py-2 text-lg text-gray-500 tracking-wide font-semibold font-sans;
+        }
       }
 
       &__social-github {
