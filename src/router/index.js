@@ -7,8 +7,15 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const { isLoggedIn } = useAuthUser();
+
+  if (to.hash.includes("type=recovery")) {
+    const accessToken = to.hash.split("&")[0];
+    const token = accessToken.replace("#access_token=", "");
+    next({ name: "ResetPassword", query: { token } });
+    console.log(isLoggedIn());
+  }
 
   if (
     !isLoggedIn() &&
