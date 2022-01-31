@@ -1,31 +1,27 @@
 <template>
-  <div class="app-forgot-password">
-    <div class="app-forgot-password__content">
+  <div class="app-reset-password">
+    <div class="app-reset-password__content">
       <form
-        class="app-forgot-password__form"
+        class="app-reset-password__form"
         @submit.prevent="handlePasswordReset"
       >
-        <h1 class="app-forgot-password__form__title">Esqueceu sua senha?</h1>
-        <span class="app-forgot-password__form__description"
-          >Digite seu email para receber as instruções para redefinir a
-          senha</span
-        >
+        <h1 class="app-reset-password__form__title">Informe uma nova senha</h1>
         <div>
-          <label class="app-forgot-password__form__label" for="email"
-            >Email</label
+          <label class="app-reset-password__form__label" for="password"
+            >Senha</label
           >
           <input
-            id="email"
-            v-model="email"
-            class="app-forgot-password__form__input"
-            type="text"
-            name="email"
-            placeholder="email"
+            id="password"
+            v-model="password"
+            class="app-reset-password__form__input"
+            type="password"
+            name="password"
+            placeholder="senha"
             required
           />
         </div>
-        <button type="submit" class="app-forgot-password__form__button">
-          Enviar
+        <button type="submit" class="app-reset-password__form__button">
+          Redefinir
         </button>
       </form>
     </div>
@@ -35,23 +31,25 @@
 <script setup>
 import useAuthUser from "../../composables/UseAuthUser";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 
-const { sendPasswordRestEmail } = useAuthUser();
+const { resetPassword } = useAuthUser();
 
-const email = ref("");
+const password = ref("");
+
+const token = route.query.token;
 
 const handlePasswordReset = async () => {
-  await sendPasswordRestEmail(email.value);
+  await resetPassword(token, password.value);
   router.push({ name: "login" });
-  console.log(`Email de redefinição de senha enviado para: ${email.value}`);
 };
 </script>
 
 <style lang="scss" scoped>
-.app-forgot-password {
+.app-reset-password {
   $this: &;
   @apply h-screen bg-gray-800 flex justify-center items-center;
 

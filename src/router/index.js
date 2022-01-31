@@ -10,6 +10,12 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const { isLoggedIn } = useAuthUser();
 
+  if (to.hash.includes("type=recovery")) {
+    const accessToken = to.hash.split("&")[0];
+    const token = accessToken.replace("#access_token=", "");
+    next({ name: "ResetPassword", query: { token } });
+  }
+
   if (
     !isLoggedIn() &&
     to.meta.requiresAuth &&
