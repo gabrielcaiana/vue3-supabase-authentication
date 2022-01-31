@@ -21,7 +21,7 @@
             id="password"
             v-model="form.password"
             class="app-login__form__input"
-            type="text"
+            type="password"
             name="password"
             placeholder="senha"
             required
