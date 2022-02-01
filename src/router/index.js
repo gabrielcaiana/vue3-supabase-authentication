@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useAuthUser from "../composables/UseAuthUser";
+import { useLoggedInUserStore } from "../store/loggedInUser";
+
 import routes from "./routes";
 
 const router = createRouter({
@@ -8,7 +10,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const { isLoggedIn } = useAuthUser();
+  const { isLoggedIn, user } = useAuthUser();
+
+  const userStore = useLoggedInUserStore();
+  userStore.setUser(user.value);
+  userStore.setLogged(isLoggedIn());
 
   if (to.hash.includes("type=recovery")) {
     const accessToken = to.hash.split("&")[0];

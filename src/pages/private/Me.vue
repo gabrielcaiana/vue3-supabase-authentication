@@ -8,9 +8,5 @@
 
 <script setup>
 import useAuthUser from "../../composables/UseAuthUser";
-import { useLoggedInUserStore } from "../../store/loggedInUser";
 const { user } = useAuthUser();
-const userLogged = useLoggedInUserStore();
-
-console.log(userLogged);
 </script>
