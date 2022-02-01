@@ -14,6 +14,7 @@ router.beforeEach((to, from, next) => {
     const accessToken = to.hash.split("&")[0];
     const token = accessToken.replace("#access_token=", "");
     next({ name: "ResetPassword", query: { token } });
+    return;
   }
 
   if (

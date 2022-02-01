@@ -33,18 +33,6 @@
           class="app-login__form__forgot-password"
           >Esqueceu sua senha?</router-link
         >
-
-        <!-- <button class="app-login__form__button--github">
-          <a @click.prevent="handleGithubLogin('github')">Github</a>
-        </button> -->
-
-        <hr class="my-6" />
-
-        <router-link to="/register">
-          <button class="app-login__form__button--secondary">
-            Criar conta
-          </button>
-        </router-link>
       </form>
     </div>
   </div>
@@ -71,15 +59,6 @@ const handleLogin = async () => {
     alert(error.message);
   }
 };
-
-// const handleGithubLogin = async (provider) => {
-//   try {
-//     await loginWithSocialProvider(provider);
-//     router.push({ name: "Me" });
-//   } catch (error) {
-//     alert(error.message);
-//   }
-// };
 </script>
 
 <style lang="scss" scoped>
@@ -107,14 +86,6 @@ const handleLogin = async () => {
 
       &__button {
         @apply w-full mt-6 mb-4 bg-green-700 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans;
-
-        &--secondary {
-          @apply w-full mb-4 bg-gray-100 rounded-lg px-4 py-2 text-lg text-gray-500 tracking-wide font-semibold font-sans;
-        }
-
-        &--github {
-          @apply w-full mt-6 bg-gray-600 rounded-lg px-4 py-2 text-lg text-gray-100 tracking-wide font-semibold font-sans;
-        }
       }
 
       &__forgot-password {
